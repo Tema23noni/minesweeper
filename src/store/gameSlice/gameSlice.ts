@@ -5,7 +5,8 @@ const initialState = {
     win: false,
     lose: false,
     face: Face.SMILE,
-    time: 40,
+    min: 40,
+    sec: 0,
     isLive: false,
     bombsFlag: 9,
     reset: false,
@@ -21,13 +22,18 @@ export const gameSlice = createSlice({
             state.face = Face.SMILE;
             state.bombsFlag = action.payload;
             state.isLive = false;
-            state.time = 40;
+            state.min = 40;
+            state.sec = 0;
             state.win = false;
             state.lose = false;
         },
         setTime(state) {
-            if (state.time === 0) return;
-            state.time--
+            if (state.min === 0 && state.sec === 0) return;
+            if (state.sec === 0) {
+                state.min--;
+                state.sec = 60;
+            }
+            state.sec--;
         },
         setWin(state, action: PayloadAction<boolean>) {
             state.win = action.payload

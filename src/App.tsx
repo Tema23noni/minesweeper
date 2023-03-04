@@ -5,14 +5,22 @@ import Button from './Components/Button';
 import EmojiDisplay from './Components/EmojiDisplay';
 import TimeDisplay from './Components/TimeDisplay';
 import { generateCells } from './Components/utils/generateCells';
-import { CellValue, ICell } from './core/@types';
+import { CellValue, Face, ICell } from './core/@types';
 import { EASY_ROWS_COLS, HARD_ROWS_COLS, MEDIUM_ROWS_COLS } from './core/constants';
 import { setDifficult } from './store/difficultSlice/difficultSlice';
-import { setBombsFlag, setReset } from './store/gameSlice/gameSlice';
+import {
+ setBombsFlag,
+ setFace,
+ setIsLive,
+ setLose,
+ setReset,
+ setTime,
+} from './store/gameSlice/gameSlice';
 import { RootState } from './store/store';
 
 const App: React.FC = () => {
  const { rows, cols, bombsCount } = useSelector((state: RootState) => state.difficult);
+ const { min, sec, isLive } = useSelector((state: RootState) => state.game);
  const dispatch = useDispatch();
  const [cells, setCells] = useState<ICell[][]>(generateCells(rows, cols, bombsCount));
  const restart = (): void => {
@@ -31,6 +39,19 @@ const App: React.FC = () => {
    dispatch(setBombsFlag(bombsCount));
   }
  }, [bombsCount]);
+ useEffect(() => {
+  if (isLive) {
+   const timer = setInterval(() => {
+    dispatch(setTime());
+   }, 1000);
+   if (min === 0 && sec === 0) {
+    dispatch(setLose(true));
+    dispatch(setFace(Face.LOSE));
+    dispatch(setIsLive(false));
+   }
+   return () => clearInterval(timer);
+  }
+ }, [min, sec, isLive]);
 
  return (
   <div className='App'>
@@ -47,9 +68,9 @@ const App: React.FC = () => {
    </div>
    <div className='GameZone'>
     <div className='Header'>
-     <BombDisplay />
+     <TimeDisplay time={min} />
      <EmojiDisplay restart={restart} />
-     <TimeDisplay />
+     <TimeDisplay time={sec} />
     </div>
     <div
      className='Body'

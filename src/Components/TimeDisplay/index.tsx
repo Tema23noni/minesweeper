@@ -4,23 +4,10 @@ import { Face } from '../../core/@types';
 import { setFace, setIsLive, setLose, setReset, setTime } from '../../store/gameSlice/gameSlice';
 import { RootState } from '../../store/store';
 import './TimeDisplay.scss';
-
-const TimeDisplay: React.FC = () => {
- const { time, isLive } = useSelector((state: RootState) => state.game);
- const dispatch = useDispatch();
- useEffect(() => {
-  if (isLive) {
-   const timer = setInterval(() => {
-    dispatch(setTime());
-   }, 100000);
-   if (time === 0) {
-    dispatch(setLose(true));
-    dispatch(setFace(Face.LOSE));
-    dispatch(setIsLive(false));
-   }
-   return () => clearInterval(timer);
-  }
- }, [time, isLive]);
+type TimeDisplayProps = {
+ time: number;
+};
+const TimeDisplay: React.FC<TimeDisplayProps> = ({ time }) => {
  return <div className='TimeDisplay'>{time.toString().padStart(3, '0')}</div>;
 };
 
