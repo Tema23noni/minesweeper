@@ -21,6 +21,7 @@ const App: React.FC = () => {
  };
  const generateNewCells = () => {
   setCells(generateCells(rows, cols, bombsCount));
+  restart();
  };
  useEffect(() => {
   generateNewCells();
