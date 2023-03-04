@@ -17,9 +17,9 @@ export const gameSlice = createSlice({
         setFace(state, action: PayloadAction<Face>) {
             state.face = action.payload
         },
-        setReset(state) {
+        setReset(state, action: PayloadAction<number>) {
             state.face = Face.SMILE;
-            state.bombsFlag = 10;
+            state.bombsFlag = action.payload;
             state.isLive = false;
             state.time = 40;
             state.win = false;

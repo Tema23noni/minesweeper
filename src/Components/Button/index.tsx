@@ -69,11 +69,11 @@ const Button: React.FC<TCellProps> = ({ cell, cells, setCells }) => {
  const handleContextCell = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
   e.preventDefault();
   if (!isLive) return;
-  if (cell.state !== CellState.FLAG) {
+  if (cell.state === CellState.CLOSED) {
    if (bombsFlag === 0) return;
    cell.state = CellState.FLAG;
    dispatch(decrementBombsFlag());
-  } else {
+  } else if (cell.state === CellState.FLAG) {
    cell.state = CellState.CLOSED;
    dispatch(incrementBombsFlag());
   }

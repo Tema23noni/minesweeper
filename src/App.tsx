@@ -16,7 +16,7 @@ const App: React.FC = () => {
  const dispatch = useDispatch();
  const [cells, setCells] = useState<ICell[][]>(generateCells(rows, cols, bombsCount));
  const restart = (): void => {
-  dispatch(setReset());
+  dispatch(setReset(bombsCount));
   setCells(generateCells(rows, cols, bombsCount));
  };
  const generateNewCells = () => {
