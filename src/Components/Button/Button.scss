@@ -1,0 +1,40 @@
+@import '../../core/styles/index.scss';
+.Button {
+ @include borders;
+ @include buttons;
+ @apply flex items-center cursor-pointer font-bold h-[30px] w-[30px] justify-center;
+ &.open {
+  border-color: #7b7b7b7b;
+  border-width: 2px;
+ }
+ span {
+  @apply ml-[2px] text-lg;
+ }
+ &.red {
+  background-color: red;
+ }
+ &.value-1 {
+  color: blue;
+ }
+ &.value-2 {
+  color: green;
+ }
+ &.value-3 {
+  color: red;
+ }
+ &.value-4 {
+  color: purple;
+ }
+ &.value-5 {
+  color: maroon;
+ }
+ &.value-6 {
+  color: turquoise;
+ }
+ &.value-7 {
+  color: black;
+ }
+ &.value-8 {
+  color: gray;
+ }
+}

@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import './core/styles/index.scss';
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&display=swap');
+* {
+ box-sizing: border-box;
+}
+body {
+ margin: 0;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ font-family: 'Big Shoulders Stencil Display', cursive;
+}
+code {
+ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.App {
+ background-color: #2c2c2c;
+ @apply flex w-full h-full flex-col justify-center items-center w-full h-screen;
+ .GameZone {
+  @include borders(white, #999);
+  @apply bg-[#c2c2c2] p-4;
+  @apply flex flex-col justify-center rounded-md items-center;
+  .Header {
+   @include borders(#7b7b7b, white);
+   @apply items-center bg-[#c0c0c0] w-full p-3 flex justify-between;
+  }
+  .Body {
+   @include borders(#7b7b7b, white);
+   display: grid;
+   margin-top: 16px;
+  }
+ }
+}
+
+.DiffOfGame {
+ @apply w-full text-center;
+}
+.btn-easy {
+ margin: 20px;
+ background-color: greenyellow;
+ padding: 10px 20px;
+ @include borders;
+ transition: 0.3s;
+
+ &:active {
+  @include borders(#999, white);
+ }
+}
+.btn-medium {
+ margin: 20px;
+ background-color: yellow;
+ padding: 10px 20px;
+ @include borders;
+ transition: 0.3s;
+ &:active {
+  @include borders(#999, white);
+ }
+}
+.btn-hard {
+ @include borders;
+ margin: 20px;
+ background-color: red;
+ padding: 10px 20px;
+ transition: 0.3s;
+
+ &:active {
+  @include borders(#999, white);
+ }
+}

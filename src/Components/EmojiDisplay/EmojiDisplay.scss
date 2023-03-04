@@ -1,0 +1,7 @@
+@import '../../core/styles/index.scss';
+.EmojiDisplay {
+ @include borders;
+ @include buttons;
+ user-select: none;
+ @apply items-center cursor-pointer flex text-[35px] h-[52px] w-[52px] justify-center active:text-3xl;
+}
