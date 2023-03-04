@@ -22,7 +22,14 @@ const Button: React.FC<TCellProps> = ({ cell, cells, setCells }) => {
  const { isLive, bombsFlag, lose, win } = useSelector((state: RootState) => state.game);
  const dispatch = useDispatch();
  const handleClickCell = () => {
-  if (lose || win) return;
+  if (win) {
+   dispatch(setFace(Face.WIN));
+   return;
+  }
+  if (lose) {
+   dispatch(setFace(Face.LOSE));
+   return;
+  }
   let newCells: ICell[][] = cells.slice();
   let newCell = cell;
   if (!isLive) {
@@ -72,9 +79,11 @@ const Button: React.FC<TCellProps> = ({ cell, cells, setCells }) => {
   if (cell.state === CellState.CLOSED) {
    if (bombsFlag === 0) return;
    cell.state = CellState.FLAG;
+   dispatch(setFace(Face.SMILE));
    dispatch(decrementBombsFlag());
   } else if (cell.state === CellState.FLAG) {
    cell.state = CellState.CLOSED;
+   dispatch(setFace(Face.SMILE));
    dispatch(incrementBombsFlag());
   }
  };
