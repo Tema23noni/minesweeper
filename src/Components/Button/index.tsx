@@ -38,7 +38,6 @@ const Button: React.FC<TCellProps> = ({ cell, cells, setCells }) => {
    dispatch(setIsLive(true));
   }
   let currentCells: [ICell[][], boolean?, boolean?] = [newCells];
-  console.log(currentCells[0]);
   currentCells = revealCell(currentCells[0], newCell, false, false);
   setCells(currentCells[0]);
   if (currentCells[1]) {

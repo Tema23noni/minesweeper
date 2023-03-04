@@ -38,7 +38,6 @@ export const generateCells = (rows: number, cols: number, numOfMines: number) =>
 }
 export const revealCell = (cells: ICell[][], cell: ICell, bombOpen = false, win = false): [ICell[][], boolean?, boolean?] => {
     if (cell.state === CellState.OPEN || cell.state === CellState.FLAG) return [cells, false];
-    console.log(cell.value)
     if (cell.value === CellValue.BOMB) {
         for (let row = 0; row < cells.length; row++) {
             for (let col = 0; col < cells[row].length; col++) {
