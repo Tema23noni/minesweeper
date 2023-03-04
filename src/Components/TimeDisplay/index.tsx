@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Face } from '../../core/@types';
-import { setFace, setIsLive, setLose, setReset, setTime } from '../../store/gameSlice/gameSlice';
-import { RootState } from '../../store/store';
+import React from 'react';
 import './TimeDisplay.scss';
 type TimeDisplayProps = {
  time: number;

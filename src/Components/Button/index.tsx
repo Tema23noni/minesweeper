@@ -104,7 +104,9 @@ const Button: React.FC<TCellProps> = ({ cell, cells, setCells }) => {
   <div
    onClick={handleClickCell}
    onContextMenu={handleContextCell}
-   className={`Button ${cell.state === CellState.OPEN ? 'open' : ''} ${cell.red ? 'red' : ''}`}>
+   className={`Button ${cell.state === CellState.OPEN ? 'open' : ''} value-${cell.value} ${
+    cell.red ? 'red' : ''
+   }`}>
    {createContent()}
   </div>
  );
